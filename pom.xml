@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sysu</groupId>
+    <artifactId>DemoAgent</artifactId>
+    <version>1.0</version>
+
+    <build>
+        <plugins>
+            <plugin>    <!--plugins要写在build标签下，不然无法识别 -->
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>    <!--maven-compiler-plugin版本写一个中央仓库有的版本，保存后它会自动下载 -->
+                <configuration>
+                    <source>1.8</source>    <!--我的jdk是10.0.1的，写成10.0.1不好用，所以就写成10了 -->
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                        <manifestEntries>
+                            <Premain-Class>AgentTest</Premain-Class>
+                            <Agent-Class>AgentTest</Agent-Class>
+                            <Can-Redefine-Classes>true</Can-Redefine-Classes>
+                            <Can-Retransform-Classes>true</Can-Retransform-Classes>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
